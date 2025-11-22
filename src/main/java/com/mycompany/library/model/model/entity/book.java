@@ -4,7 +4,11 @@
  */
 package com.mycompany.library.model.model.entity;
 
+import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import java.util.Date;
 
 /**
@@ -14,6 +18,8 @@ import java.util.Date;
 @Entity
 public class Book {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     private String title;
@@ -26,7 +32,9 @@ public class Book {
     
     private String publisher;
     
-    private Tag tag;
+    private String classification;
+    
+   
 
     
     /**
@@ -36,23 +44,13 @@ public class Book {
     }
 
         
-    public Book(int id, String title, String author, Date publicationDate, String isbn, String publisher, Tag tag) {
+    public Book(int id, String title, String author, Date publicationDate, String isbn, String publisher) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.publicationDate = publicationDate;
         this.isbn = isbn;
         this.publisher = publisher;
-        this.tag = tag;
-    }
-
-    public Book(String title, String author, Date publicationDate, String isbn, String publisher, Tag tag) {
-        this.title = title;
-        this.author = author;
-        this.publicationDate = publicationDate;
-        this.isbn = isbn;
-        this.publisher = publisher;
-        this.tag = tag;
     }
 
     public Book(String title, String author, Date publicationDate, String isbn, String publisher) {
@@ -123,15 +121,6 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public Tag getTag() {
-        return tag;
-    }
-
-    public void setTag(Tag tag) {
-        this.tag = tag;
-    }
-
-    
     /**
      * Método toString
      */
@@ -139,7 +128,7 @@ public class Book {
     public String toString() {
         return "book{" + "id=" + id + ", title=" + title + ", author=" + author 
                 + ", publicationDate=" + publicationDate + ", isbn=" + isbn 
-                + ", publisher=" + publisher + ", tag=" + tag + '}';
+                + ", publisher=" + publisher;
     }
     
     
