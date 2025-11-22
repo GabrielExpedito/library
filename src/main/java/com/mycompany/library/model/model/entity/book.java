@@ -12,7 +12,7 @@ import java.util.Date;
  * @author Gabriel Expedito
  */
 @Entity
-public class book {
+public class Book {
     
     private int id;
     
@@ -32,11 +32,11 @@ public class book {
     /**
      * Métodos construtores com ou sem argumentos
      */
-    public book() {
+    public Book() {
     }
 
         
-    public book(int id, String title, String author, Date publicationDate, String isbn, String publisher, Tag tag) {
+    public Book(int id, String title, String author, Date publicationDate, String isbn, String publisher, Tag tag) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -46,7 +46,7 @@ public class book {
         this.tag = tag;
     }
 
-    public book(String title, String author, Date publicationDate, String isbn, String publisher, Tag tag) {
+    public Book(String title, String author, Date publicationDate, String isbn, String publisher, Tag tag) {
         this.title = title;
         this.author = author;
         this.publicationDate = publicationDate;
@@ -55,7 +55,7 @@ public class book {
         this.tag = tag;
     }
 
-    public book(String title, String author, Date publicationDate, String isbn, String publisher) {
+    public Book(String title, String author, Date publicationDate, String isbn, String publisher) {
         this.title = title;
         this.author = author;
         this.publicationDate = publicationDate;
@@ -63,7 +63,7 @@ public class book {
         this.publisher = publisher;
     }
 
-    public book(String title, String author, String isbn, String publisher) {
+    public Book(String title, String author, String isbn, String publisher) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
