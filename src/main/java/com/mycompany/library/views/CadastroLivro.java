@@ -1,7 +1,12 @@
 package com.mycompany.library.views;
 
-import com.mycompany.library.model.model.entity.Livro;
+import java.util.Date;
+import com.mycompany.library.dao.LivroDAO;
+import com.mycompany.library.model.entity.Livro;
+import com.mycompany.library.model.entity.Livro;
+import com.mycompany.library.service.LivroService;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
@@ -16,7 +21,6 @@ public class CadastroLivro extends javax.swing.JDialog {
     /**
      * Creates new form RegisterBook
      */
-
     public CadastroLivro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -166,7 +170,47 @@ public class CadastroLivro extends javax.swing.JDialog {
 
 
     private void BtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarActionPerformed
-        salvarAção();
+       
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        
+        try {
+            Livro livro = new Livro();
+
+            String titulo = TxtTitulo.getText();
+            String autor = TxtAutor.getText();
+            String dataString = TxtDataPublicacao.getText();
+            String isbn = txtISBN.getText();
+            String editora = txtEditora.getText();
+            
+            Date dataConvertida = format.parse(dataString);
+            
+            
+            
+            livro.setTitulo(titulo);
+            livro.setAutor(autor);
+            livro.setDataPublicacao(dataConvertida);
+            livro.setIsbn(isbn);
+            livro.setEditora(editora);
+            
+
+            LivroDAO livroDAO = new LivroDAO();
+
+            livroDAO.salvarLivro(livro);
+
+            JOptionPane.showMessageDialog(null, "Livro criado com sucesso");
+
+            TxtTitulo.setText("");
+            TxtAutor.setText("");
+            TxtDataPublicacao.setText("");
+            txtISBN.setText("");
+            txtEditora.setText("");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }
+
+
     }//GEN-LAST:event_BtnSalvarActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
@@ -218,30 +262,6 @@ public class CadastroLivro extends javax.swing.JDialog {
         });
     }
 
-    private void salvarAção() {
-
-        String titulo = TxtTitulo.getText();
-        String autor = TxtAutor.getText();
-        String data = TxtDataPublicacao.getText();
-        String isbn = txtISBN.getText();
-        String editora = txtEditora.getText();
-
-        Livro livro = new Livro();
-
-        try {
-
-            TxtTitulo.setText("");
-            TxtAutor.setText("");
-            TxtDataPublicacao.setText("");
-            txtISBN.setText("");
-            txtEditora.setText("");
-
-            JOptionPane.showMessageDialog(null, "Livro criado com sucesso");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-
-    }
 
     private void maskData() {
         MaskFormatter maskDate = null;

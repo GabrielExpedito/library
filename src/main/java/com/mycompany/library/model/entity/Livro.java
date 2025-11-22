@@ -1,10 +1,13 @@
+package com.mycompany.library.model.entity;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.library.model.model.entity;
+
 
 import jakarta.annotation.Generated;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,16 +25,22 @@ public class Livro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private String titulo;
 
+    @Column(nullable = false)
     private String autor;
 
+    @Column(nullable = false)
     private Date dataPublicacao;
 
+    @Column(nullable = false)
     private String isbn;
 
+    @Column(nullable = false)
     private String editora;
 
+    @Column(nullable = false)
     private String classificacao;
 
     /**

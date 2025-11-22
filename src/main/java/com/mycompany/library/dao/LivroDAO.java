@@ -4,8 +4,11 @@
  */
 package com.mycompany.library.dao;
 
-import com.mycompany.library.config.HibernateUtil;
-import com.mycompany.library.model.model.entity.Livro;
+import com.mycompany.library.model.entity.Livro;
+import com.mycompany.library.model.entity.Livro;
+import com.mycompany.library.util.HibernateUtil;
+import jakarta.persistence.EntityManager;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -16,13 +19,20 @@ import org.hibernate.Transaction;
 public class LivroDAO {
     
     public void salvarLivro(Livro livro) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
+        EntityManager em = HibernateUtil.obterEntityManager();
         
-        session.persist(livro);
-        
-        transaction.commit();
-        session.close();
+        try {
+            em.getTransaction().begin();
+            em.persist(livro);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            throw e;
+        } finally {
+            em.close();
+        }
+            
     }
+    
     
 }
