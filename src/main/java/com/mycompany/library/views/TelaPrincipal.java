@@ -1,19 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package com.mycompany.library.views;
 
 /**
  *
  * @author Gabriel Expedito
  */
-public class Library extends javax.swing.JFrame {
+public class TelaPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form Library
      */
-    public Library() {
+    public TelaPrincipal() {
         initComponents();
     }
 
@@ -27,29 +24,39 @@ public class Library extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        MenuBarPrincipal = new javax.swing.JMenuBar();
+        MenuCadastrar = new javax.swing.JMenu();
+        MenuItemCadastrarLivro = new javax.swing.JMenuItem();
+        MenuConsultar = new javax.swing.JMenu();
+        MenuImportarArquivo = new javax.swing.JMenu();
+        MenuConsultarISBN = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("Cadastrar");
-        jMenuBar1.add(jMenu1);
+        MenuCadastrar.setText("Cadastrar");
 
-        jMenu2.setText("Consultar");
-        jMenuBar1.add(jMenu2);
+        MenuItemCadastrarLivro.setText("Cadastrar Livro");
+        MenuItemCadastrarLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemCadastrarLivroActionPerformed(evt);
+            }
+        });
+        MenuCadastrar.add(MenuItemCadastrarLivro);
 
-        jMenu3.setText("Importar Arquivo");
-        jMenuBar1.add(jMenu3);
+        MenuBarPrincipal.add(MenuCadastrar);
 
-        jMenu4.setText("Consultar ISBN");
-        jMenuBar1.add(jMenu4);
+        MenuConsultar.setText("Consultar");
+        MenuBarPrincipal.add(MenuConsultar);
 
-        setJMenuBar(jMenuBar1);
+        MenuImportarArquivo.setText("Importar Arquivo");
+        MenuBarPrincipal.add(MenuImportarArquivo);
+
+        MenuConsultarISBN.setText("Consultar ISBN");
+        MenuBarPrincipal.add(MenuConsultarISBN);
+
+        setJMenuBar(MenuBarPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,6 +71,12 @@ public class Library extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void MenuItemCadastrarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemCadastrarLivroActionPerformed
+       CadastroLivro dialog = new CadastroLivro(this, true);
+       
+       dialog.setVisible(true);
+    }//GEN-LAST:event_MenuItemCadastrarLivroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -82,30 +95,32 @@ public class Library extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Library.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Library.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Library.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Library.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Library().setVisible(true);
+                new TelaPrincipal().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar MenuBarPrincipal;
+    private javax.swing.JMenu MenuCadastrar;
+    private javax.swing.JMenu MenuConsultar;
+    private javax.swing.JMenu MenuConsultarISBN;
+    private javax.swing.JMenu MenuImportarArquivo;
+    private javax.swing.JMenuItem MenuItemCadastrarLivro;
     private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

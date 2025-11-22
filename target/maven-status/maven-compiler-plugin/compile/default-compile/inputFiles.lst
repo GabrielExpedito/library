@@ -1,7 +1,7 @@
+C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\model\model\entity\Livro.java
 C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\Library.java
-C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\model\model\entity\Book.java
-C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\views\RegisterBook.java
+C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\views\CadastroLivro.java
 C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\persistence\xml.java
-C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\views\Library.java
-C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\repository\BookRepository.java
-C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\service\BookService.java
+C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\repository\LivroRepository.java
+C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\views\TelaPrincipal.java
+C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\service\LivroService.java

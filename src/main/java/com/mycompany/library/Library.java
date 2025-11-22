@@ -4,6 +4,8 @@
 
 package com.mycompany.library;
 
+import com.mycompany.library.views.TelaPrincipal;
+
 /**
  *
  * @author Gabriel Expedito
@@ -11,6 +13,13 @@ package com.mycompany.library;
 public class Library {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        
+        telaPrincipal.setVisible(true);
+        
+        
+                
+        
     }
 }
