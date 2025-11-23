@@ -1,12 +1,5 @@
 package com.mycompany.library.model.entity;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-
-import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -49,7 +42,8 @@ public class Livro {
     public Livro() {
     }
 
-    public Livro(int id, String titulo, String autor, Date dataPublicacao, String isbn, String editora, String classificacao) {
+    public Livro(int id, String titulo, String autor, Date dataPublicacao, 
+                    String isbn, String editora, String classificacao) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
@@ -59,7 +53,8 @@ public class Livro {
         this.classificacao = classificacao;
     }
 
-    public Livro(String titulo, String autor, Date dataPublicacao, String isbn, String editora, String classificacao) {
+    public Livro(String titulo, String autor, Date dataPublicacao, String isbn, 
+                    String editora, String classificacao) {
         this.titulo = titulo;
         this.autor = autor;
         this.dataPublicacao = dataPublicacao;
@@ -67,8 +62,6 @@ public class Livro {
         this.editora = editora;
         this.classificacao = classificacao;
     }
-
-    
 
     /**
      * Métodos Getters e Setters
@@ -122,6 +115,14 @@ public class Livro {
         this.editora = editora;
     }
 
+    public String getClassificacao() {
+        return classificacao;
+    }
+
+    public void setClassificacao(String classificacao) {
+        this.classificacao = classificacao;
+    }
+    
     /**
      * Método toString
      */
