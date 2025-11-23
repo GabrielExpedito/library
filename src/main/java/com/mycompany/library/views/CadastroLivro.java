@@ -16,8 +16,8 @@ public class CadastroLivro extends javax.swing.JDialog {
     /**
      * Creates new form RegisterBook
      */
-    public CadastroLivro(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public CadastroLivro(java.awt.Window parent, boolean modal) {
+        super(parent, DEFAULT_MODALITY_TYPE);
         initComponents();
         //maskData();
     }

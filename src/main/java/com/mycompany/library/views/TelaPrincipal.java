@@ -28,6 +28,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuCadastrar = new javax.swing.JMenu();
         MenuItemCadastrarLivro = new javax.swing.JMenuItem();
         MenuConsultar = new javax.swing.JMenu();
+        MenuItemConsultarLivros = new javax.swing.JMenuItem();
         MenuImportarArquivo = new javax.swing.JMenu();
         MenuConsultarISBN = new javax.swing.JMenu();
 
@@ -48,6 +49,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuBarPrincipal.add(MenuCadastrar);
 
         MenuConsultar.setText("Consultar");
+
+        MenuItemConsultarLivros.setText("Consultar livros");
+        MenuItemConsultarLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemConsultarLivrosActionPerformed(evt);
+            }
+        });
+        MenuConsultar.add(MenuItemConsultarLivros);
+
         MenuBarPrincipal.add(MenuConsultar);
 
         MenuImportarArquivo.setText("Importar Arquivo");
@@ -73,10 +83,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuItemCadastrarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemCadastrarLivroActionPerformed
-       CadastroLivro dialog = new CadastroLivro(this, true);
+       CadastroLivro dialogCadastroLivro = new CadastroLivro(this, true);
        
-       dialog.setVisible(true);
+       dialogCadastroLivro.setVisible(true);
     }//GEN-LAST:event_MenuItemCadastrarLivroActionPerformed
+
+    private void MenuItemConsultarLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemConsultarLivrosActionPerformed
+        ConsultaLivro consultaLivro = new ConsultaLivro(this, true);
+        
+        consultaLivro.setVisible(true);
+    }//GEN-LAST:event_MenuItemConsultarLivrosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,6 +137,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MenuConsultarISBN;
     private javax.swing.JMenu MenuImportarArquivo;
     private javax.swing.JMenuItem MenuItemCadastrarLivro;
+    private javax.swing.JMenuItem MenuItemConsultarLivros;
     private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

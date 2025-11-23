@@ -1,11 +1,17 @@
 com\mycompany\library\dao\LivroDAO.class
+com\mycompany\library\views\ConsultaLivro$1.class
+com\mycompany\library\views\ConsultaLivro$2.class
 com\mycompany\library\views\CadastroLivro$3$1.class
 com\mycompany\library\views\CadastroLivro.class
+com\mycompany\library\views\TelaPrincipal$3.class
 com\mycompany\library\views\CadastroLivro$2.class
 com\mycompany\library\views\TelaPrincipal$2.class
 com\mycompany\library\views\CadastroLivro$3.class
+com\mycompany\library\views\ConsultaLivro$3.class
 com\mycompany\library\util\HibernateUtil.class
 com\mycompany\library\views\CadastroLivro$1.class
+com\mycompany\library\views\ConsultaLivro.class
+com\mycompany\library\views\ConsultaLivro$3$1.class
 com\mycompany\library\views\TelaPrincipal.class
 com\mycompany\library\Library.class
 com\mycompany\library\model\entity\Livro.class
