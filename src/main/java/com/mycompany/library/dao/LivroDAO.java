@@ -7,6 +7,7 @@ package com.mycompany.library.dao;
 import com.mycompany.library.model.entity.Livro;
 import com.mycompany.library.util.HibernateUtil;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
@@ -37,6 +38,24 @@ public class LivroDAO {
             throw e;
         } finally {
             em.close();
+        }
+    }
+
+    public List<Livro> consutarLivros() {
+        EntityManager em = getEntityManager();
+
+        try {
+            String jsql = "SELECT L FROM Livro l";
+            TypedQuery<Livro> query = em.createQuery(jsql, Livro.class);
+            return query.getResultList();
+        } catch (Exception e) {
+            System.err.println("Erro ao consultar todos os livros: " + e.getMessage());
+            e.printStackTrace();
+            return List.of();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
         }
     }
 
@@ -86,5 +105,4 @@ public class LivroDAO {
         }
 
     }
-
 }

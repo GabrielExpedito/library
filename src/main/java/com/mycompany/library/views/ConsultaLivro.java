@@ -7,9 +7,11 @@ package com.mycompany.library.views;
 import com.mycompany.library.dao.LivroDAO;
 import com.mycompany.library.model.entity.Livro;
 import com.mycompany.library.service.LivroService;
+import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JTable;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -17,14 +19,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ConsultaLivro extends javax.swing.JDialog {
 
-    private javax.swing.JTextField txtTitulo;
-    private javax.swing.JTextField txtAutor;
-    private javax.swing.JTextField txtIsbn;
-    private javax.swing.JTextField txtEditora;
-    private javax.swing.JTextField txtClassificacao;
-    private DefaultTableModel modeloDefault;
     private LivroDAO livroDAO = new LivroDAO();
     private LivroService livroService = new LivroService();
+    private LivroTableModel livroTableModel;
 
     /**
      * Creates new form ConsultaLivro
@@ -32,32 +29,29 @@ public class ConsultaLivro extends javax.swing.JDialog {
     public ConsultaLivro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
         configurarTabela();
-        carregarTabela();
+        carregarTabelaLivros(null, null, null, null, null);
+
     }
 
-    private void carregarTabela() {
-        modeloDefault.setRowCount(0);
+    public void configurarTabela() {
+        livroTableModel = new LivroTableModel(new ArrayList<>());
+        tblConsulta.setModel(livroTableModel);
+        
+    }
 
-        String titulo = txtTitulo.getText();
-        String autor = txtAutor.getText();
-        String isbn = txtIsbn.getText();
-        String editora = txtEditora.getText();
-        String classificacao = txtClassificacao.getText();
+    public void carregarTabelaLivros(String titulo, String autor, String isbn,
+            String editora, String classificacao) {
+        try {
+            List<Livro> resultado = livroService.consultaLivro(titulo, autor,
+                    isbn, editora, classificacao);
 
-        List<Livro> livros = livroDAO.consultarLivro(titulo, autor, isbn,
-                editora, classificacao);
-
-        for (Livro l : livros) {
-            modeloDefault.addRow(new Object[]{
-                l.getId(),
-                l.getTitulo(),
-                l.getIsbn(),
-                l.getEditora(),
-                l.getClassificacao()
-            });
+            livroTableModel.setLivros(resultado);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar dados dos livros");
+            e.printStackTrace();
         }
-
     }
 
     /**
@@ -74,7 +68,7 @@ public class ConsultaLivro extends javax.swing.JDialog {
         BtnDeletar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        javax.swing.JTable TblConsulta = new javax.swing.JTable();
+        tblConsulta = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -96,7 +90,7 @@ public class ConsultaLivro extends javax.swing.JDialog {
             }
         });
 
-        TblConsulta.setModel(new javax.swing.table.DefaultTableModel(
+        tblConsulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -107,7 +101,7 @@ public class ConsultaLivro extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(TblConsulta);
+        jScrollPane1.setViewportView(tblConsulta);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -196,13 +190,6 @@ public class ConsultaLivro extends javax.swing.JDialog {
         });
     }
 
-    public void configurarTabela() {
-        modeloDefault = new DefaultTableModel(
-                new Object[]{"ID", "Título", "Autor", "ISBN", "Editora",
-                    "Classificação"}, 0);
-       
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancelar;
@@ -210,5 +197,6 @@ public class ConsultaLivro extends javax.swing.JDialog {
     private javax.swing.JButton BtnEditar;
     private javax.swing.JButton BtnInserir;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblConsulta;
     // End of variables declaration//GEN-END:variables
 }

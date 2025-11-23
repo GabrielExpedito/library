@@ -7,6 +7,7 @@ com\mycompany\library\views\TelaPrincipal$3.class
 com\mycompany\library\views\CadastroLivro$2.class
 com\mycompany\library\views\TelaPrincipal$2.class
 com\mycompany\library\views\CadastroLivro$3.class
+com\mycompany\library\views\LivroTableModel.class
 com\mycompany\library\views\ConsultaLivro$3.class
 com\mycompany\library\util\HibernateUtil.class
 com\mycompany\library\views\CadastroLivro$1.class
