@@ -46,10 +46,8 @@ public class LivroDAO {
         EntityManager em = getEntityManager();
 
         try {
-            String sql = "SELECT id, titulo, autor, dataPublicacao,"
-                    + "isbn, editora, classificacao FROM Livro";
-            TypedQuery<Livro> query = em.createQuery(sql, Livro.class);
-            return query.getResultList();
+            return getEntityManager().createQuery("FROM " + 
+                    Livro.class.getName()).getResultList();
         } catch (Exception e) {
             System.err.println("Erro ao consultar todos os livros: " + e.getMessage());
             e.printStackTrace();

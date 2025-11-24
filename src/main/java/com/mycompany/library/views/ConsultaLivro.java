@@ -6,7 +6,6 @@ package com.mycompany.library.views;
 
 import com.mycompany.library.dao.LivroDAO;
 import com.mycompany.library.model.entity.Livro;
-import com.mycompany.library.service.LivroService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -20,7 +19,6 @@ import javax.swing.table.TableModel;
 public class ConsultaLivro extends javax.swing.JDialog {
 
     private LivroDAO livroDAO = new LivroDAO();
-    private LivroService livroService = new LivroService();
     private LivroTableModel livroTableModel;
 
     /**
@@ -139,6 +137,7 @@ public class ConsultaLivro extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
@@ -149,6 +148,7 @@ public class ConsultaLivro extends javax.swing.JDialog {
         CadastroLivro dialogCadastroLivro = new CadastroLivro(this, true);
 
         dialogCadastroLivro.setVisible(true);
+        carregarTabelaLivros();
     }//GEN-LAST:event_BtnInserirActionPerformed
 
     private void BtnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeletarActionPerformed

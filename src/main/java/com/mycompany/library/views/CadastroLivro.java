@@ -3,7 +3,6 @@ package com.mycompany.library.views;
 import java.util.Date;
 import com.mycompany.library.dao.LivroDAO;
 import com.mycompany.library.model.entity.Livro;
-import com.mycompany.library.service.LivroService;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -163,6 +162,7 @@ public class CadastroLivro extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -195,13 +195,7 @@ public class CadastroLivro extends javax.swing.JDialog {
 
             JOptionPane.showMessageDialog(null, "Livro criado com sucesso");
 
-            TxtTitulo.setText("");
-            TxtAutor.setText("");
-            TxtDataPublicacao.setText("");
-            txtISBN.setText("");
-            txtEditora.setText("");
-            txtClassificacao.setText("");
-
+            this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

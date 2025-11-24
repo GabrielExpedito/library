@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Gabriel Expedito
  */
-public class LivroService {
+/*public class LivroService {
     
     private LivroDAO livroDAO = new LivroDAO();
     
@@ -30,4 +30,4 @@ public class LivroService {
     }
     
     
-}
+}*/

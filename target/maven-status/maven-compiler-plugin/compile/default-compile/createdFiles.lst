@@ -16,6 +16,5 @@ com\mycompany\library\views\ConsultaLivro.class
 com\mycompany\library\views\TelaPrincipal.class
 com\mycompany\library\Library.class
 com\mycompany\library\model\entity\Livro.class
-com\mycompany\library\service\LivroService.class
 com\mycompany\library\views\ConsultaLivro$4.class
 com\mycompany\library\views\TelaPrincipal$1.class

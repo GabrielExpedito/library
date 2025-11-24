@@ -18,7 +18,7 @@ public class HibernateUtil {
     
     static {
         try {
-            emf = Persistence.createEntityManagerFactory("Blibioteca");
+            emf = Persistence.createEntityManagerFactory("Biblioteca");
         } catch (Throwable e) {
             System.err.println("Falha ao inicializar EntityManagarFactory" + e);
             throw new ExceptionInInitializerError(e);
