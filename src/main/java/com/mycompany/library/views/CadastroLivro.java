@@ -3,7 +3,9 @@ package com.mycompany.library.views;
 import java.util.Date;
 import com.mycompany.library.dao.LivroDAO;
 import com.mycompany.library.model.entity.Livro;
+import com.mycompany.library.service.LivroService;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
@@ -253,21 +255,6 @@ public class CadastroLivro extends javax.swing.JDialog {
             }
         });
     }
-
-
-   /* private void maskData() {
-        MaskFormatter maskDate = null;
-        try {
-            maskDate = new MaskFormatter("##/##/####");
-            maskDate.setPlaceholderCharacter('_');
-
-        } catch (Exception e) {
-            System.err.println("Erro na formatação: " + e.getMessage());
-            JOptionPane.showMessageDialog(null, "A data precisa estar no "
-                    + "formato: ##/##/####");
-        }
-    }*/
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancelar;

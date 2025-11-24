@@ -7,6 +7,7 @@ package com.mycompany.library.dao;
 import com.mycompany.library.model.entity.Livro;
 import com.mycompany.library.util.HibernateUtil;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -41,12 +42,13 @@ public class LivroDAO {
         }
     }
 
-    public List<Livro> consutarLivros() {
+    public List<Livro> consutarTodosLivros() {
         EntityManager em = getEntityManager();
 
         try {
-            String jsql = "SELECT L FROM Livro l";
-            TypedQuery<Livro> query = em.createQuery(jsql, Livro.class);
+            String sql = "SELECT id, titulo, autor, dataPublicacao,"
+                    + "isbn, editora, classificacao FROM Livro";
+            TypedQuery<Livro> query = em.createQuery(sql, Livro.class);
             return query.getResultList();
         } catch (Exception e) {
             System.err.println("Erro ao consultar todos os livros: " + e.getMessage());
@@ -94,10 +96,10 @@ public class LivroDAO {
                 predicates.add(criteriaBuilder.like(root.get("classificacao"),
                         "%" + classificacao + "%"));
             }
-            
+
             Predicate[] arrayPredicates = predicates.toArray(new Predicate[0]);
             query.where(arrayPredicates);
-            
+
             return em.createQuery(query).getResultList();
 
         } finally {
@@ -105,4 +107,35 @@ public class LivroDAO {
         }
 
     }
+
+    public void deletarLivro(int id) {
+        EntityManager em = getEntityManager();
+
+        try {
+            String hql = "DELETE FROM Livro l WHERE l.id = :id";
+            Query query = em.createQuery(hql);
+
+            query.setParameter("id", id);
+
+            em.getTransaction().begin();
+
+            query.executeUpdate();
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.err.println("Erro ao deletar o livro");
+            e.printStackTrace();
+
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+        } finally {
+            if (em != null) {
+                em.close();
+
+            }
+        }
+
+    }
+
 }

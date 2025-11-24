@@ -29,23 +29,21 @@ public class ConsultaLivro extends javax.swing.JDialog {
     public ConsultaLivro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         configurarTabela();
-        carregarTabelaLivros(null, null, null, null, null);
+        carregarTabelaLivros();
 
     }
 
     public void configurarTabela() {
         livroTableModel = new LivroTableModel(new ArrayList<>());
         tblConsulta.setModel(livroTableModel);
-        
+
     }
 
-    public void carregarTabelaLivros(String titulo, String autor, String isbn,
-            String editora, String classificacao) {
+    public void carregarTabelaLivros() {
         try {
-            List<Livro> resultado = livroService.consultaLivro(titulo, autor,
-                    isbn, editora, classificacao);
+            List<Livro> resultado = livroDAO.consutarTodosLivros();
 
             livroTableModel.setLivros(resultado);
         } catch (Exception e) {
@@ -82,6 +80,11 @@ public class ConsultaLivro extends javax.swing.JDialog {
         BtnEditar.setText("Editar");
 
         BtnDeletar.setText("Deletar");
+        BtnDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDeletarActionPerformed(evt);
+            }
+        });
 
         BtnCancelar.setText("Cancelar");
         BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +150,35 @@ public class ConsultaLivro extends javax.swing.JDialog {
 
         dialogCadastroLivro.setVisible(true);
     }//GEN-LAST:event_BtnInserirActionPerformed
+
+    private void BtnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeletarActionPerformed
+        int linhaSelecionado = tblConsulta.getSelectedRow();
+
+        if (linhaSelecionado == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione um registro "
+                    + "para excluir");
+            return;
+        }
+
+        int confirmar = JOptionPane.showConfirmDialog(this, "Tem certeza que"
+                + "deseja excluir ?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (confirmar == JOptionPane.YES_OPTION) {
+            int id = (int) livroTableModel.getValueAt(linhaSelecionado, 0);
+
+            try {
+                livroDAO.deletarLivro(id);
+                livroTableModel.removeRow(linhaSelecionado);
+
+                JOptionPane.showMessageDialog(this, "Livro excluído");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Erro ao excluir Livro"
+                        + e.getMessage());
+            }
+
+        }
+    }//GEN-LAST:event_BtnDeletarActionPerformed
 
     /**
      * @param args the command line arguments

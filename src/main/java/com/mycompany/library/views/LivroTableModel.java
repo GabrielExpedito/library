@@ -25,10 +25,16 @@ public class LivroTableModel extends AbstractTableModel {
     
     public void setLivros(List<Livro> livros) {
         this.livros = livros;
+        fireTableDataChanged();
     }
 
     public Livro getLivro(int rowIndex) {
         return livros.get(rowIndex);
+    }
+    
+    public void removeRow(int row) {
+        livros.remove(row);
+        fireTableRowsDeleted(row, row);
     }
     
     // --- Métodos de AbstractTableModel

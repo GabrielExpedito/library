@@ -21,7 +21,7 @@ public class LivroService {
     }
     
     public void consultarTodosLivros() {
-        livroDAO.consutarLivros();
+        livroDAO.consutarTodosLivros();
     }
     
     public List<Livro> consultaLivro(String titulo, String autor, String isbn, 
