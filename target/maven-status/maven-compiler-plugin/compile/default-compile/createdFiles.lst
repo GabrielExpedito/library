@@ -5,6 +5,7 @@ com\mycompany\library\views\ConsultaLivro$2.class
 com\mycompany\library\views\CadastroLivro$3$1.class
 com\mycompany\library\views\CadastroLivro.class
 com\mycompany\library\views\TelaPrincipal$3.class
+com\mycompany\library\model\entity\Classificacao.class
 com\mycompany\library\views\CadastroLivro$2.class
 com\mycompany\library\views\TelaPrincipal$2.class
 com\mycompany\library\views\CadastroLivro$3.class

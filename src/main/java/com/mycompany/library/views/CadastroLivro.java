@@ -2,9 +2,12 @@ package com.mycompany.library.views;
 
 import java.util.Date;
 import com.mycompany.library.dao.LivroDAO;
+import com.mycompany.library.model.entity.Classificacao;
 import com.mycompany.library.model.entity.Livro;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
@@ -13,6 +16,7 @@ import javax.swing.text.MaskFormatter;
  * @author Gabriel Expedito
  */
 public class CadastroLivro extends javax.swing.JDialog {
+    
 
     /**
      * Creates new form RegisterBook
@@ -20,6 +24,7 @@ public class CadastroLivro extends javax.swing.JDialog {
     public CadastroLivro(java.awt.Window parent, boolean modal) {
         super(parent, DEFAULT_MODALITY_TYPE);
         initComponents();
+        cbClassificacao.setModel(new DefaultComboBoxModel<>(Classificacao.values()));
         //maskData();
     }
 
@@ -46,8 +51,8 @@ public class CadastroLivro extends javax.swing.JDialog {
         lblPublisher = new javax.swing.JLabel();
         txtEditora = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        txtClassificacao = new javax.swing.JTextField();
         BtnCancelar = new javax.swing.JButton();
+        cbClassificacao = new javax.swing.JComboBox();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
@@ -109,12 +114,12 @@ public class CadastroLivro extends javax.swing.JDialog {
                             .addComponent(TxtDataPublicacao, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(77, 77, 77)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtClassificacao, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtEditora, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPublisher, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtISBN)
-                            .addComponent(LblISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(LblISBN, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                            .addComponent(cbClassificacao, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(100, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -141,7 +146,7 @@ public class CadastroLivro extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LblTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -167,9 +172,9 @@ public class CadastroLivro extends javax.swing.JDialog {
 
 
     private void BtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarActionPerformed
-       
+
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        
+
         try {
             Livro livro = new Livro();
 
@@ -178,10 +183,10 @@ public class CadastroLivro extends javax.swing.JDialog {
             String dataString = TxtDataPublicacao.getText();
             String isbn = txtISBN.getText();
             String editora = txtEditora.getText();
-            String classificacao = txtClassificacao.getText();
-            
+            Classificacao classificacao = (Classificacao) cbClassificacao.getSelectedItem();
+
             Date dataConvertida = format.parse(dataString);
-            
+
             livro.setTitulo(titulo);
             livro.setAutor(autor);
             livro.setDataPublicacao(dataConvertida);
@@ -261,10 +266,10 @@ public class CadastroLivro extends javax.swing.JDialog {
     private javax.swing.JTextField TxtAutor;
     private javax.swing.JFormattedTextField TxtDataPublicacao;
     private javax.swing.JTextField TxtTitulo;
+    private javax.swing.JComboBox cbClassificacao;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblPublisher;
-    private javax.swing.JTextField txtClassificacao;
     private javax.swing.JTextField txtEditora;
     private javax.swing.JTextField txtISBN;
     // End of variables declaration//GEN-END:variables

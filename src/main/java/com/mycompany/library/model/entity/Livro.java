@@ -2,6 +2,8 @@ package com.mycompany.library.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,8 +37,9 @@ public class Livro {
     @Column(nullable = false)
     private String editora;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String classificacao;
+    private Classificacao classificacao;
 
     /**
      * Métodos construtores com ou sem argumentos
@@ -45,7 +48,7 @@ public class Livro {
     }
 
     public Livro(int id, String titulo, String autor, Date dataPublicacao, 
-                    String isbn, String editora, String classificacao) {
+                    String isbn, String editora, Classificacao classificacao) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
@@ -56,7 +59,7 @@ public class Livro {
     }
 
     public Livro(String titulo, String autor, Date dataPublicacao, String isbn, 
-                    String editora, String classificacao) {
+                    String editora, Classificacao classificacao) {
         this.titulo = titulo;
         this.autor = autor;
         this.dataPublicacao = dataPublicacao;
@@ -117,11 +120,11 @@ public class Livro {
         this.editora = editora;
     }
 
-    public String getClassificacao() {
+    public Classificacao getClassificacao() {
         return classificacao;
     }
 
-    public void setClassificacao(String classificacao) {
+    public void setClassificacao(Classificacao classificacao) {
         this.classificacao = classificacao;
     }
     
