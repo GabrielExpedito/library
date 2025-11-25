@@ -135,5 +135,25 @@ public class LivroDAO {
         }
 
     }
+    
+    public void editarLivro(Livro livro) {
+        EntityManager em = getEntityManager();
+        
+        try {
+            em.getTransaction().begin();
+            em.merge(livro);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            System.err.println("Erro ao editar o livro");
+            e.printStackTrace();
+            
+        }finally {
+            if(em != null){
+                em.close();
+            }
+        }
+        
+    }
 
 }

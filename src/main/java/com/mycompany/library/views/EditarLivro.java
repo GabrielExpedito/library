@@ -1,30 +1,55 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ */
 package com.mycompany.library.views;
 
-import java.util.Date;
 import com.mycompany.library.dao.LivroDAO;
 import com.mycompany.library.model.entity.Classificacao;
 import com.mycompany.library.model.entity.Livro;
 import java.text.SimpleDateFormat;
-import java.util.List;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.text.MaskFormatter;
 
 /**
  *
  * @author Gabriel Expedito
  */
-public class CadastroLivro extends javax.swing.JDialog {
-    
+public class EditarLivro extends javax.swing.JDialog {
+
+    private Livro livro;
 
     /**
-     * Creates new form RegisterBook
+     * Creates new form EditarLivro
      */
-    public CadastroLivro(java.awt.Window parent, boolean modal) {
+    public EditarLivro(java.awt.Window parent, boolean modal) {
         super(parent, DEFAULT_MODALITY_TYPE);
         initComponents();
+        this.livro = livro;
+
+        preencherCampos();
+    }
+
+    public EditarLivro(java.awt.Window parent, boolean modal, Livro livro) {
+        super(parent, DEFAULT_MODALITY_TYPE);
+        initComponents();
+        this.livro = livro;
+
         cbClassificacao.setModel(new DefaultComboBoxModel<>(Classificacao.values()));
+
+        preencherCampos();
+
+    }
+
+    private void preencherCampos() {
+        TxtTitulo.setText(livro.getTitulo());
+        TxtAutor.setText(livro.getAutor());
+        txtISBN.setText(livro.getIsbn());
+        txtEditora.setText(livro.getEditora());
+        TxtDataPublicacao.setText(new SimpleDateFormat("dd/MM/yyyy").format(
+                livro.getDataPublicacao()));
+        cbClassificacao.setSelectedItem(livro.getClassificacao());
     }
 
     /**
@@ -36,30 +61,24 @@ public class CadastroLivro extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        LblRegisterBooks = new javax.swing.JLabel();
         LblTitle = new javax.swing.JLabel();
         TxtTitulo = new javax.swing.JTextField();
         LblAuthor = new javax.swing.JLabel();
         TxtAutor = new javax.swing.JTextField();
         LblPublicationDate = new javax.swing.JLabel();
         TxtDataPublicacao = new javax.swing.JFormattedTextField();
-        BtnSalvar = new javax.swing.JButton();
         LblISBN = new javax.swing.JLabel();
         txtISBN = new javax.swing.JTextField();
         lblPublisher = new javax.swing.JLabel();
         txtEditora = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        BtnCancelar = new javax.swing.JButton();
         cbClassificacao = new javax.swing.JComboBox();
-
-        jFormattedTextField1.setText("jFormattedTextField1");
+        LblRegisterBooks = new javax.swing.JLabel();
+        BtnSalvar = new javax.swing.JButton();
+        BtnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        LblRegisterBooks.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        LblRegisterBooks.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LblRegisterBooks.setText("CADASTRO LIVRO");
+        setPreferredSize(new java.awt.Dimension(657, 352));
 
         LblTitle.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LblTitle.setText("Título");
@@ -70,13 +89,6 @@ public class CadastroLivro extends javax.swing.JDialog {
         LblPublicationDate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LblPublicationDate.setText("Data da Publicação");
 
-        BtnSalvar.setText("Salvar");
-        BtnSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSalvarActionPerformed(evt);
-            }
-        });
-
         LblISBN.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LblISBN.setText("ISBN");
 
@@ -86,6 +98,19 @@ public class CadastroLivro extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Classificação");
 
+        LblRegisterBooks.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LblRegisterBooks.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LblRegisterBooks.setText("EDITAR LIVRO");
+
+        BtnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnSalvar.setText("Salvar");
+        BtnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSalvarActionPerformed(evt);
+            }
+        });
+
+        BtnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         BtnCancelar.setText("Cancelar");
         BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,13 +122,13 @@ public class CadastroLivro extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
-                        .addComponent(LblRegisterBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnSalvar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
+                        .addGap(96, 96, 96)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(LblAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(LblPublicationDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -111,29 +136,29 @@ public class CadastroLivro extends javax.swing.JDialog {
                             .addComponent(TxtTitulo)
                             .addComponent(TxtAutor)
                             .addComponent(TxtDataPublicacao, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(77, 77, 77)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtEditora, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPublisher, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtISBN)
-                            .addComponent(LblISBN, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                            .addComponent(cbClassificacao, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(100, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(BtnSalvar)
+                            .addComponent(LblISBN, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbClassificacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtnCancelar)
-                .addGap(8, 8, 8))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(LblRegisterBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(232, 232, 232))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(LblRegisterBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LblISBN)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -158,7 +183,7 @@ public class CadastroLivro extends javax.swing.JDialog {
                         .addComponent(LblPublicationDate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TxtDataPublicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnSalvar)
                     .addComponent(BtnCancelar))
@@ -166,42 +191,32 @@ public class CadastroLivro extends javax.swing.JDialog {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void BtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarActionPerformed
-
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-
         try {
-            Livro livro = new Livro();
+            livro.setTitulo(TxtTitulo.getText());
+            livro.setAutor(TxtAutor.getText());
+            livro.setIsbn(txtISBN.getText());
+            livro.setEditora(txtEditora.getText());
 
-            String titulo = TxtTitulo.getText();
-            String autor = TxtAutor.getText();
-            String dataString = TxtDataPublicacao.getText();
-            String isbn = txtISBN.getText();
-            String editora = txtEditora.getText();
-            Classificacao classificacao = (Classificacao) cbClassificacao.getSelectedItem();
+            Date data = new SimpleDateFormat("dd/MM/yyyy").parse(
+                    TxtDataPublicacao.getText());
+            livro.setDataPublicacao(data);
 
-            Date dataConvertida = format.parse(dataString);
-
-            livro.setTitulo(titulo);
-            livro.setAutor(autor);
-            livro.setDataPublicacao(dataConvertida);
-            livro.setIsbn(isbn);
-            livro.setEditora(editora);
+            Classificacao classificacao = 
+                    (Classificacao) cbClassificacao.getSelectedItem();
             livro.setClassificacao(classificacao);
 
             LivroDAO livroDAO = new LivroDAO();
+            livroDAO.editarLivro(livro);
 
-            livroDAO.salvarLivro(livro);
-
-            JOptionPane.showMessageDialog(null, "Livro criado com sucesso");
-
+            JOptionPane.showMessageDialog(this, "Livro editado com sucesso");
             this.dispose();
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(this, "Erro ao editar livro: "
+                    + e.getMessage());
         }
     }//GEN-LAST:event_BtnSalvarActionPerformed
 
@@ -226,23 +241,20 @@ public class CadastroLivro extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-
-                CadastroLivro dialog = new CadastroLivro(new javax.swing.JFrame(),
-                        true);
+                EditarLivro dialog = new EditarLivro(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -266,7 +278,6 @@ public class CadastroLivro extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField TxtDataPublicacao;
     private javax.swing.JTextField TxtTitulo;
     private javax.swing.JComboBox cbClassificacao;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblPublisher;
     private javax.swing.JTextField txtEditora;

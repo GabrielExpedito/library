@@ -76,6 +76,11 @@ public class ConsultaLivro extends javax.swing.JDialog {
         });
 
         BtnEditar.setText("Editar");
+        BtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEditarActionPerformed(evt);
+            }
+        });
 
         BtnDeletar.setText("Deletar");
         BtnDeletar.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +184,22 @@ public class ConsultaLivro extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_BtnDeletarActionPerformed
+
+    private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
+        int linhaSelecionada = tblConsulta.getSelectedRow();
+        
+        if (linhaSelecionada < 0) {
+            JOptionPane.showMessageDialog(this, "Necessário selecionar um livro");
+            return;
+        }
+        
+        Livro livro = livroTableModel.getLivro(linhaSelecionada);
+        
+        EditarLivro editarLivro = new EditarLivro(this, true, livro);
+        editarLivro.setVisible(true);
+        
+        carregarTabelaLivros();
+    }//GEN-LAST:event_BtnEditarActionPerformed
 
     /**
      * @param args the command line arguments

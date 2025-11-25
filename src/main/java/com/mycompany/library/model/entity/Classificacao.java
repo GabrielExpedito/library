@@ -10,21 +10,20 @@ package com.mycompany.library.model.entity;
  */
 public enum Classificacao {
     
-    FICCAO,
-    SUSPENSE,
-    TERRO,
-    ROMANCE,
-    EDUCAÇÃO,
-    INFANTIL,
-    TERROR,
-    AVENTURA,
-    BIOGRAFIA,
-    AUTODESENVOLVIMENTO,
-    FINANÇAS,
-    ECONOMIA,
-    RELIGIÃO,
-    FILOSOFIA,
-    SOCIOLOGIA,
-    HISTÓRIA;
+    Ficcao,
+    Suspense,
+    Romance,
+    Educação,
+    Infantil,
+    Terror,
+    Aventura,
+    Biografia,
+    Autodesenvolvimento,
+    Finanças,
+    Economia,
+    Religião,
+    Filosofia,
+    Sociologia,
+    História;
     
 }
