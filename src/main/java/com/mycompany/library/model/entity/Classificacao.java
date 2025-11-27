@@ -1,11 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
- */
 package com.mycompany.library.model.entity;
 
 /**
- *
+ * Classe Enum para poder definir as classificações de livro afim de usar 
+ * JCOMBOBOX
+ * 
  * @author Gabriel Expedito
  */
 public enum Classificacao {
@@ -26,5 +24,4 @@ public enum Classificacao {
     SOCIOLOGIA,
     NÃO_INFORMADO,
     HISTORIA;
-    
 }

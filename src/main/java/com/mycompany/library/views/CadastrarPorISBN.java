@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package com.mycompany.library.views;
 
 import com.mycompany.library.model.entity.Livro;
@@ -9,7 +5,7 @@ import com.mycompany.library.service.LivroService;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Tela para informar o ISBN vindo da API OpenLibrary
  * @author Gabriel Expedito
  */
 public class CadastrarPorISBN extends javax.swing.JDialog {

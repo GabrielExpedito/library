@@ -14,15 +14,15 @@ import javax.swing.table.AbstractTableModel;
 public class LivroTableModel extends AbstractTableModel {
 
     private static final String[] COLUNAS = {"ID", "Título", "Autor", "ISBN", "Editora", "Data Pub.", "Classificação"};
-    
+
     private List<Livro> livros;
-    
+
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public LivroTableModel(List<Livro> livros) {
         this.livros = livros != null ? livros : new ArrayList<>();
     }
-    
+
     public void setLivros(List<Livro> livros) {
         this.livros = livros;
         fireTableDataChanged();
@@ -31,14 +31,13 @@ public class LivroTableModel extends AbstractTableModel {
     public Livro getLivro(int rowIndex) {
         return livros.get(rowIndex);
     }
-    
+
     public void removeRow(int row) {
         livros.remove(row);
         fireTableRowsDeleted(row, row);
     }
-    
-    // --- Métodos de AbstractTableModel
 
+    // --- Métodos de AbstractTableModel
     @Override
     public int getRowCount() {
         return livros.size();
@@ -53,10 +52,10 @@ public class LivroTableModel extends AbstractTableModel {
     public String getColumnName(int columnIndex) {
         return COLUNAS[columnIndex];
     }
-    
+
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return false; 
+        return false;
     }
 
     @Override
@@ -75,9 +74,8 @@ public class LivroTableModel extends AbstractTableModel {
             case 4: // Editora
                 return livro.getEditora();
             case 5: // Data Publicacao
-                // Formata o objeto Date para uma String legível
                 Date data = livro.getDataPublicacao();
-                return data != null ? dateFormat.format(data) : ""; 
+                return data != null ? dateFormat.format(data) : "";
             case 6: // Classificação
                 return livro.getClassificacao();
             default:

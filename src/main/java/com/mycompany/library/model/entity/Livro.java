@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import java.util.Date;
 
 /**
- *
+ * Classe da entidade Livro usando o mapeamento do Hibernate
  * @author Gabriel Expedito
  */
 @Entity

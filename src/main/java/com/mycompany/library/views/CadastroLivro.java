@@ -5,14 +5,11 @@ import com.mycompany.library.dao.LivroDAO;
 import com.mycompany.library.model.entity.Classificacao;
 import com.mycompany.library.model.entity.Livro;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.text.MaskFormatter;
 
 /**
- *
+ * Tela para realizar o cadastro do livro
  * @author Gabriel Expedito
  */
 public class CadastroLivro extends javax.swing.JDialog {

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package com.mycompany.library.views;
 
 import com.mycompany.library.dao.LivroDAO;
@@ -9,11 +5,11 @@ import com.mycompany.library.model.entity.Livro;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
- *
+ * Tela que permite demonstrar o retorno da consulta de todos os livros existentes
+ * no banco de dados, possuindo botões para chamar ações como Inserir, Editar e
+ * Deletar
  * @author Gabriel Expedito
  */
 public class ConsultaLivro extends javax.swing.JDialog {
@@ -27,16 +23,13 @@ public class ConsultaLivro extends javax.swing.JDialog {
     public ConsultaLivro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
         configurarTabela();
         carregarTabelaLivros();
-
     }
 
     public void configurarTabela() {
         livroTableModel = new LivroTableModel(new ArrayList<>());
         tblConsulta.setModel(livroTableModel);
-
     }
 
     public void carregarTabelaLivros() {

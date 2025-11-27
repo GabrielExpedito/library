@@ -23,9 +23,6 @@ public class HibernateUtil {
             System.err.println("Falha ao inicializar EntityManagarFactory" + e);
             throw new ExceptionInInitializerError(e);
         }
-        
-        
-        
     }
     
     public static EntityManager obterEntityManager() {

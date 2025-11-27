@@ -9,7 +9,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 /**
- *
+ * Classe LivroService para poder realizar o processamento da informações
+ * recebidas pela API 
+ * 
+ * 
  * @author Gabriel Expedito
  */
 public class LivroService {
@@ -19,6 +22,12 @@ public class LivroService {
     //Constante com a máscara esperada da data formatada
     private static final SimpleDateFormat JSON_DATA_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
+    /**
+     * Recebe a entrada do controller com o retorno da API para processar o JSON
+     * 
+     * @param isbn
+     * @return 
+     */
     public Livro buscarSalvarPorIsbn(String isbn) {
         String json = ConsumoAPI.buscarLivroPorIsbn(isbn);
 
@@ -34,6 +43,12 @@ public class LivroService {
         return livro;
     }
 
+    /**
+     * Converter o JSON vindo da API para um Objeto Livro
+     * 
+     * @param json
+     * @return Objeto Livro
+     */
     public static Livro jsonParaLivro(String json) {
 
         JSONObject objJson = new JSONObject(json);

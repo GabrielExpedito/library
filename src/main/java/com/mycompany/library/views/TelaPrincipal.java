@@ -2,7 +2,7 @@
 package com.mycompany.library.views;
 
 /**
- *
+ * Tela inicial do sistema contendo o menu de opções
  * @author Gabriel Expedito
  */
 public class TelaPrincipal extends javax.swing.JFrame {

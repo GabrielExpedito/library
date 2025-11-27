@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package com.mycompany.library.views;
 
 import com.mycompany.library.dao.LivroDAO;
@@ -13,7 +9,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Tela que pega as informações do livro selecionado para poderem ser editadas
  * @author Gabriel Expedito
  */
 public class EditarLivro extends javax.swing.JDialog {
