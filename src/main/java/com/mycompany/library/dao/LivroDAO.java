@@ -8,25 +8,39 @@ import com.mycompany.library.model.entity.Livro;
 import com.mycompany.library.util.HibernateUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.criteria.Predicate;
-import java.util.Date;
 
 /**
- *
+ *Classe responsável por realizar as operações de persistência no banco da 
+ * Entidade Livro com JPA e Hibernate
+ * 
+ * <p>Este DAO possuí as ações relacionadas ao gerenciamento de livros no banco
+ * de dados como salvar, consultar, editar e deletar</p>
+ * 
  * @author Gabriel Expedito
  */
 public class LivroDAO {
-
+    
+    
+    /**
+     * Instância um EntityManager a partir do Hibernate.
+     * 
+     * @return  novo EntityManager para operações em JPA
+     */
     private EntityManager getEntityManager() {
         return HibernateUtil.obterEntityManager();
     }
 
+    
+    /**
+     * Persiste um objeto Livro no banco de dados.
+     * @param livro 
+     */
     public void salvarLivro(Livro livro) {
         EntityManager em = getEntityManager();
 
@@ -42,6 +56,11 @@ public class LivroDAO {
         }
     }
 
+    /**
+     * Consulta todos os livros salvos no banco de dados.
+     * 
+     * @return  lista contendo todos os livros encontrados
+     */
     public List<Livro> consutarTodosLivros() {
         EntityManager em = getEntityManager();
 
@@ -59,6 +78,19 @@ public class LivroDAO {
         }
     }
 
+    /**
+     * Consulta livros aplicando filtro de pesquisa dinâmico.
+     * 
+     * <p>É utilizado critérios JPA para montar a consulta apenas com os campos 
+     * que foram preenchidos pelo usuário.</p>
+     * 
+     * @param titulo
+     * @param autor
+     * @param isbn
+     * @param editora
+     * @param classificacao
+     * @return 
+     */
     public List<Livro> consultarLivro(String titulo, String autor,
             String isbn, String editora, String classificacao) {
         EntityManager em = getEntityManager();
@@ -106,6 +138,14 @@ public class LivroDAO {
 
     }
 
+    /**
+     * Exclui um livro do banco de dados com base no ID
+     * 
+     * <p>Este método utiliza uma query HQL para realizar uma remoção diretamente
+     * sem necessidade de carregar o objeto</p>
+     * 
+     * @param id identificador do livro a ser removido
+     */
     public void deletarLivro(int id) {
         EntityManager em = getEntityManager();
 
@@ -136,6 +176,11 @@ public class LivroDAO {
 
     }
     
+    /**
+     * Atualiza os dados de um livro existente no banco 
+     * 
+     * @param livro objeto contendo os novos valores a serem persistidos
+     */
     public void editarLivro(Livro livro) {
         EntityManager em = getEntityManager();
         

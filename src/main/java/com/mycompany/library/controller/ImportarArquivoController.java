@@ -15,23 +15,48 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
- *
+ *  Classe controller para realizar o processamento de Importação de arquivo CSV
+ * 
+ * <p><b>Formato esperado do arquivo: CSV</b></p>
+ * 
+ * Requisitos do arquivo:
+ * <ul>
+ *  <li><b>dataPublicacao</b> estar no formato dd/MM/yyyy</li>
+ *  <li><b>classificacao</b> deve corresponder a um valor válido do ENUM
+ * 
  * @author Gabriel Expedito
  */
 public class ImportarArquivoController {
     
+    /**
+     * Importação do DAO que busca operações com o Banco de Dados
+     * */
     private LivroDAO livroDAO;
     
     private final ImportacaoArquivo importadorTela;
     
+    /**
+     * Construtor da classe que recebe a tela de importação de arquivo
+     * 
+     * @param arquivo  
+     */
     public ImportarArquivoController(ImportacaoArquivo arquivo) {
         this.importadorTela = arquivo;
         this.livroDAO = new LivroDAO();
     }
     
+    
+    /**
+     * Abre a seleção de arquivos com o (FileChooser) para que seja importado
+     * um arquivo CSV
+     * 
+     * <p>Após a seleção o método valida o tipo do arquivo para ser feito o 
+     * processamento
+     * </p>
+     */
     public void abrirFileChooser() {
         JFileChooser chooser = new JFileChooser();
-        chooser.setDialogTitle("Selecione arquivo CSV ou XML");
+        chooser.setDialogTitle("Selecione arquivo CSV");
         
         int arquivoEscolhido = chooser.showOpenDialog(null);
         
@@ -53,11 +78,25 @@ public class ImportarArquivoController {
         }
     }
     
+    
+    /**
+     * Realiza a leitura e importação de um arquivo no formato CSV contendo dados
+     * para persistir no banco com base na entidade Livro
+     * 
+     * <p>Cada linha validada é criado um objeto Livro de acordo 
+     * com os campos definidos no cabeçalho</p>
+     * 
+     * <p>Após o processamento é persistido as informações no banco de dados</p>
+     * 
+     * @param arquivo
+     * @throws Exception 
+     */
     public void importarCSV(File arquivo) throws Exception {
         BufferedReader br = new BufferedReader(new FileReader(arquivo));
         String linha;
         List<Livro> livros = new ArrayList<>();
         
+        //Ignorado a primeira linha que contém cabeçalho
         br.readLine();
         
         while((linha = br.readLine()) != null) {
@@ -89,6 +128,7 @@ public class ImportarArquivoController {
             livros.add(livro1);
         }
         br.close();
+        //Salva cada livro no banco
         for (Livro livro : livros) {
             livroDAO.salvarLivro(livro);
         }
