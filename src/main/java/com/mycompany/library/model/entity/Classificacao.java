@@ -24,6 +24,7 @@ public enum Classificacao {
     RELIGIÃO,
     FILOSOFIA,
     SOCIOLOGIA,
+    NÃO_INFORMADO,
     HISTORIA;
     
 }

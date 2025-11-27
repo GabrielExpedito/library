@@ -5,9 +5,11 @@ C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\myc
 C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\views\CadastroLivro.java
 C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\model\entity\Classificacao.java
 C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\views\EditarLivro.java
+C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\controller\ConsumoAPI.java
+C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\service\LivroService.java
 C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\dao\LivroDAO.java
 C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\views\ConsultaLivro.java
 C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\Library.java
-C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\service\ImportarArquivoService.java
+C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\views\CadastrarPorISBN.java
 C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\controller\ImportarArquivoController.java
 C:\Users\Gabriel Expedito\Documents\Alpha7 Projeto\library\src\main\java\com\mycompany\library\views\TelaPrincipal.java

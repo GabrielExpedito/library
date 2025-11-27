@@ -1,4 +1,5 @@
 com\mycompany\library\views\ImportacaoArquivo$2.class
+com\mycompany\library\views\CadastrarPorISBN$2.class
 com\mycompany\library\views\ConsultaLivro$5$1.class
 com\mycompany\library\views\EditarLivro$1.class
 com\mycompany\library\controller\ImportarArquivoController.class
@@ -6,9 +7,9 @@ com\mycompany\library\views\TelaPrincipal$4.class
 com\mycompany\library\views\ConsultaLivro$2.class
 com\mycompany\library\views\CadastroLivro$3$1.class
 com\mycompany\library\views\CadastroLivro.class
-com\mycompany\library\service\ImportarArquivoService.class
 com\mycompany\library\views\EditarLivro$3$1.class
 com\mycompany\library\model\entity\Classificacao.class
+com\mycompany\library\views\CadastrarPorISBN.class
 com\mycompany\library\views\ImportacaoArquivo$3$1.class
 com\mycompany\library\views\CadastroLivro$3.class
 com\mycompany\library\views\ImportacaoArquivo.class
@@ -19,10 +20,15 @@ com\mycompany\library\views\EditarLivro$2.class
 com\mycompany\library\views\EditarLivro.class
 com\mycompany\library\views\ImportacaoArquivo$3.class
 com\mycompany\library\views\TelaPrincipal.class
+com\mycompany\library\service\LivroService.class
 com\mycompany\library\views\ConsultaLivro$4.class
 com\mycompany\library\views\TelaPrincipal$1.class
+com\mycompany\library\views\TelaPrincipal$5.class
+com\mycompany\library\controller\ConsumoAPI.class
+com\mycompany\library\views\CadastrarPorISBN$3.class
 com\mycompany\library\dao\LivroDAO.class
 com\mycompany\library\views\ConsultaLivro$1.class
+com\mycompany\library\views\CadastrarPorISBN$1.class
 com\mycompany\library\views\ImportacaoArquivo$1.class
 com\mycompany\library\views\TelaPrincipal$3.class
 com\mycompany\library\views\CadastroLivro$2.class
@@ -31,5 +37,6 @@ com\mycompany\library\views\EditarLivro$3.class
 com\mycompany\library\views\ConsultaLivro$3.class
 com\mycompany\library\views\CadastroLivro$1.class
 com\mycompany\library\views\ConsultaLivro$5.class
+com\mycompany\library\views\CadastrarPorISBN$3$1.class
 com\mycompany\library\Library.class
 com\mycompany\library\model\entity\Livro.class

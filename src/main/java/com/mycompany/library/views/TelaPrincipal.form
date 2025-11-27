@@ -54,10 +54,20 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="MenuConsultarISBN">
+        <Menu class="javax.swing.JMenu" name="MenuCadastrarISBN">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Consultar ISBN"/>
+            <Property name="text" type="java.lang.String" value="Cadastrar por ISBN"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuItemCadastroISBN">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cadastro por ISBN"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemCadastroISBNActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>

@@ -31,7 +31,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuItemConsultarLivros = new javax.swing.JMenuItem();
         MenuImportarArquivo = new javax.swing.JMenu();
         MenuItemImportarArquivo = new javax.swing.JMenuItem();
-        MenuConsultarISBN = new javax.swing.JMenu();
+        MenuCadastrarISBN = new javax.swing.JMenu();
+        MenuItemCadastroISBN = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -73,8 +74,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         MenuBarPrincipal.add(MenuImportarArquivo);
 
-        MenuConsultarISBN.setText("Consultar ISBN");
-        MenuBarPrincipal.add(MenuConsultarISBN);
+        MenuCadastrarISBN.setText("Cadastrar por ISBN");
+
+        MenuItemCadastroISBN.setText("Cadastro por ISBN");
+        MenuItemCadastroISBN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemCadastroISBNActionPerformed(evt);
+            }
+        });
+        MenuCadastrarISBN.add(MenuItemCadastroISBN);
+
+        MenuBarPrincipal.add(MenuCadastrarISBN);
 
         setJMenuBar(MenuBarPrincipal);
 
@@ -110,6 +120,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         importacaoArquivo.setVisible(true);
     }//GEN-LAST:event_MenuItemImportarArquivoActionPerformed
+
+    private void MenuItemCadastroISBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemCadastroISBNActionPerformed
+        CadastrarPorISBN cadastrarPorISBN = new CadastrarPorISBN(this, true);
+        
+        cadastrarPorISBN.setVisible(true);
+    }//GEN-LAST:event_MenuItemCadastroISBNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,10 +166,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar MenuBarPrincipal;
     private javax.swing.JMenu MenuCadastrar;
+    private javax.swing.JMenu MenuCadastrarISBN;
     private javax.swing.JMenu MenuConsultar;
-    private javax.swing.JMenu MenuConsultarISBN;
     private javax.swing.JMenu MenuImportarArquivo;
     private javax.swing.JMenuItem MenuItemCadastrarLivro;
+    private javax.swing.JMenuItem MenuItemCadastroISBN;
     private javax.swing.JMenuItem MenuItemConsultarLivros;
     private javax.swing.JMenuItem MenuItemImportarArquivo;
     private javax.swing.JMenuItem jMenuItem1;
