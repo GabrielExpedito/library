@@ -7,37 +7,40 @@ import org.json.JSONObject;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * Classe LivroService para poder realizar o processamento da informações
- * recebidas pela API 
- * 
- * 
+ * recebidas pela API
+ *
+ *
  * @author Gabriel Expedito
  */
 public class LivroService {
 
-    private LivroDAO livroDAO =  new LivroDAO();
+    private LivroDAO livroDAO = new LivroDAO();
 
     //Constante com a máscara esperada da data formatada
     private static final SimpleDateFormat JSON_DATA_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     /**
      * Recebe a entrada do controller com o retorno da API para processar o JSON
-     * 
+     *
      * @param isbn
-     * @return 
+     * @return
      */
     public Livro buscarSalvarPorIsbn(String isbn) {
         String json = ConsumoAPI.buscarLivroPorIsbn(isbn);
 
         Livro livro = jsonParaLivro(json);
-        
-        if(livro.getClassificacao() == null ) {
+
+        if (livro.getClassificacao() == null) {
             livro.setClassificacao(livro.getClassificacao().NÃO_INFORMADO);
         }
-        
-        if (livro != null){ 
+
+        if (livro != null) {
             livroDAO.salvarLivro(livro);
         }
         return livro;
@@ -45,7 +48,7 @@ public class LivroService {
 
     /**
      * Converter o JSON vindo da API para um Objeto Livro
-     * 
+     *
      * @param json
      * @return Objeto Livro
      */
@@ -66,24 +69,22 @@ public class LivroService {
         //Váriavel para armazenar a data vinda do JSON da API
         String dataString = objJson.optString("publish_date", "");
 
+        DateTimeFormatter dataFormatter = DateTimeFormatter.ofPattern("MMMM, d yyyy",
+                Locale.ENGLISH);
+
+        LocalDate date = LocalDate.parse(dataString, dataFormatter);
+        
+        DateTimeFormatter dataConvertida = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
         //Váriavel para armazenar a data em formato DATE
-        Date dataConvertida = null;
+        String dataConvertidaSaída = date.format(dataConvertida);
 
-        //Tentativa de converter a data do JSON(API) para Date
-        if (!dataString.isEmpty()) {
-            try {
-                dataConvertida = JSON_DATA_FORMAT.parse(dataString);
-            } catch (Exception e) {
-                System.err.println("Não foi possível converter a data"
-                        + dataString);
-            }
-        }
-
-        livro.setDataPublicacao(dataConvertida);
+        livro.setDataPublicacao(LocalDate.parse(dataConvertidaSaída));
 
         livro.setIsbn(objJson.optString("isbn_13", objJson.optString("isbn_10", "")));
 
         return livro;
     }
+    
 
 }

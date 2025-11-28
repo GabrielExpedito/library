@@ -5,15 +5,18 @@ import com.mycompany.library.dao.LivroDAO;
 import com.mycompany.library.model.entity.Classificacao;
 import com.mycompany.library.model.entity.Livro;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
  * Tela para realizar o cadastro do livro
+ *
  * @author Gabriel Expedito
  */
 public class CadastroLivro extends javax.swing.JDialog {
-    
 
     /**
      * Creates new form RegisterBook
@@ -169,8 +172,6 @@ public class CadastroLivro extends javax.swing.JDialog {
 
     private void BtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarActionPerformed
 
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-
         try {
             Livro livro = new Livro();
 
@@ -181,7 +182,10 @@ public class CadastroLivro extends javax.swing.JDialog {
             String editora = txtEditora.getText();
             Classificacao classificacao = (Classificacao) cbClassificacao.getSelectedItem();
 
-            Date dataConvertida = format.parse(dataString);
+
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            LocalDate dataConvertida = LocalDate.parse(dataString, format);
 
             livro.setTitulo(titulo);
             livro.setAutor(autor);

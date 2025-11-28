@@ -2,6 +2,7 @@ package com.mycompany.library.views;
 
 import com.mycompany.library.model.entity.Livro;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -74,7 +75,7 @@ public class LivroTableModel extends AbstractTableModel {
             case 4: // Editora
                 return livro.getEditora();
             case 5: // Data Publicacao
-                Date data = livro.getDataPublicacao();
+                LocalDate data = livro.getDataPublicacao();
                 return data != null ? dateFormat.format(data) : "";
             case 6: // Classificação
                 return livro.getClassificacao();

@@ -7,6 +7,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -26,7 +27,7 @@ public class Livro {
     @Column(nullable = false)
     private String autor;
 
-    private Date dataPublicacao;
+    private LocalDate dataPublicacao;
 
     @Column(nullable = false)
     private String isbn;
@@ -44,7 +45,7 @@ public class Livro {
     public Livro() {
     }
 
-    public Livro(int id, String titulo, String autor, Date dataPublicacao, 
+    public Livro(int id, String titulo, String autor, LocalDate dataPublicacao, 
                     String isbn, String editora, Classificacao classificacao) {
         this.id = id;
         this.titulo = titulo;
@@ -55,7 +56,7 @@ public class Livro {
         this.classificacao = classificacao;
     }
 
-    public Livro(String titulo, String autor, Date dataPublicacao, String isbn, 
+    public Livro(String titulo, String autor, LocalDate dataPublicacao, String isbn, 
                     String editora, Classificacao classificacao) {
         this.titulo = titulo;
         this.autor = autor;
@@ -93,11 +94,11 @@ public class Livro {
         this.autor = autor;
     }
 
-    public Date getDataPublicacao() {
+    public LocalDate getDataPublicacao() {
         return dataPublicacao;
     }
 
-    public void setDataPublicacao(Date dataPublicacao) {
+    public void setDataPublicacao(LocalDate dataPublicacao) {
         this.dataPublicacao = dataPublicacao;
     }
 

@@ -4,12 +4,15 @@ import com.mycompany.library.dao.LivroDAO;
 import com.mycompany.library.model.entity.Classificacao;
 import com.mycompany.library.model.entity.Livro;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
  * Tela que pega as informações do livro selecionado para poderem ser editadas
+ *
  * @author Gabriel Expedito
  */
 public class EditarLivro extends javax.swing.JDialog {
@@ -196,12 +199,14 @@ public class EditarLivro extends javax.swing.JDialog {
             livro.setIsbn(txtISBN.getText());
             livro.setEditora(txtEditora.getText());
 
-            Date data = new SimpleDateFormat("dd/MM/yyyy").parse(
-                    TxtDataPublicacao.getText());
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            LocalDate data = LocalDate.parse(TxtDataPublicacao.getText(), format);
+
             livro.setDataPublicacao(data);
 
-            Classificacao classificacao = 
-                    (Classificacao) cbClassificacao.getSelectedItem();
+            Classificacao classificacao
+                    = (Classificacao) cbClassificacao.getSelectedItem();
             livro.setClassificacao(classificacao);
 
             LivroDAO livroDAO = new LivroDAO();
