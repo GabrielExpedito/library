@@ -46,8 +46,9 @@ public class EditarLivro extends javax.swing.JDialog {
         TxtAutor.setText(livro.getAutor());
         txtISBN.setText(livro.getIsbn());
         txtEditora.setText(livro.getEditora());
-        TxtDataPublicacao.setText(new SimpleDateFormat("dd/MM/yyyy").format(
-                livro.getDataPublicacao()));
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
+        TxtDataPublicacao.setText(livro.getDataPublicacao().format(format));
         cbClassificacao.setSelectedItem(livro.getClassificacao());
     }
 

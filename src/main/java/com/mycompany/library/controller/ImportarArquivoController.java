@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -109,7 +110,8 @@ public class ImportarArquivoController {
             livro1.setAutor(dados[2]);
             
             //Conversão do String do CSV para Date conforme entidade
-            LocalDate data = LocalDate.parse(dados[3]);
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate data = LocalDate.parse(dados[3], format);
             livro1.setDataPublicacao(data);
             
             livro1.setIsbn(dados[4]);

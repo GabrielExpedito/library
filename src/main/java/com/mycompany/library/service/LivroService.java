@@ -49,6 +49,7 @@ public class LivroService {
     /**
      * Converter o JSON vindo da API para um Objeto Livro
      *
+     *
      * @param json
      * @return Objeto Livro
      */
@@ -66,25 +67,18 @@ public class LivroService {
 
         livro.setEditora(objJson.optString("publishers", ""));
 
-        //Váriavel para armazenar a data vinda do JSON da API
         String dataString = objJson.optString("publish_date", "");
 
-        DateTimeFormatter dataFormatter = DateTimeFormatter.ofPattern("MMMM, d yyyy",
-                Locale.ENGLISH);
+        DateTimeFormatter dataFormatter
+                = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
 
         LocalDate date = LocalDate.parse(dataString, dataFormatter);
-        
-        DateTimeFormatter dataConvertida = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        livro.setDataPublicacao(date);
 
-        //Váriavel para armazenar a data em formato DATE
-        String dataConvertidaSaída = date.format(dataConvertida);
-
-        livro.setDataPublicacao(LocalDate.parse(dataConvertidaSaída));
-
-        livro.setIsbn(objJson.optString("isbn_13", objJson.optString("isbn_10", "")));
+        livro.setIsbn(objJson.optString("isbn_13", objJson.optString("isbn_10",
+                "")));
 
         return livro;
     }
-    
+    }
 
-}

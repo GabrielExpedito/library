@@ -1,8 +1,8 @@
 package com.mycompany.library.views;
 
 import com.mycompany.library.model.entity.Livro;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +18,7 @@ public class LivroTableModel extends AbstractTableModel {
 
     private List<Livro> livros;
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public LivroTableModel(List<Livro> livros) {
         this.livros = livros != null ? livros : new ArrayList<>();
@@ -76,7 +76,7 @@ public class LivroTableModel extends AbstractTableModel {
                 return livro.getEditora();
             case 5: // Data Publicacao
                 LocalDate data = livro.getDataPublicacao();
-                return data != null ? dateFormat.format(data) : "";
+                return data != null ? format.format(data) : "";
             case 6: // Classificação
                 return livro.getClassificacao();
             default:
