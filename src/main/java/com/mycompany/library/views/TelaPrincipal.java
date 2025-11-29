@@ -52,7 +52,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         MenuConsultar.setText("Consultar");
 
-        MenuItemConsultarLivros.setText("Consultar livros");
+        MenuItemConsultarLivros.setText("Consultar todos livros");
         MenuItemConsultarLivros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenuItemConsultarLivrosActionPerformed(evt);

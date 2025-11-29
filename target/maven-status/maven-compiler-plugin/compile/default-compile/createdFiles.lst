@@ -1,8 +1,8 @@
 com\mycompany\library\views\ImportacaoArquivo$2.class
 com\mycompany\library\views\CadastrarPorISBN$2.class
-com\mycompany\library\views\ConsultaLivro$5$1.class
 com\mycompany\library\views\EditarLivro$1.class
 com\mycompany\library\controller\ImportarArquivoController.class
+com\mycompany\library\views\ConsultaLivro$7.class
 com\mycompany\library\views\TelaPrincipal$4.class
 com\mycompany\library\views\ConsultaLivro$2.class
 com\mycompany\library\views\CadastroLivro$3$1.class
@@ -30,11 +30,13 @@ com\mycompany\library\dao\LivroDAO.class
 com\mycompany\library\views\ConsultaLivro$1.class
 com\mycompany\library\views\CadastrarPorISBN$1.class
 com\mycompany\library\views\ImportacaoArquivo$1.class
+com\mycompany\library\views\ConsultaLivro$6.class
 com\mycompany\library\views\TelaPrincipal$3.class
 com\mycompany\library\views\CadastroLivro$2.class
 com\mycompany\library\views\TelaPrincipal$2.class
 com\mycompany\library\views\EditarLivro$3.class
 com\mycompany\library\views\ConsultaLivro$3.class
+com\mycompany\library\views\ConsultaLivro$7$1.class
 com\mycompany\library\views\CadastroLivro$1.class
 com\mycompany\library\views\ConsultaLivro$5.class
 com\mycompany\library\views\CadastrarPorISBN$3$1.class

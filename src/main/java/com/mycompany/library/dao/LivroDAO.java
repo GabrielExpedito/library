@@ -87,7 +87,7 @@ public class LivroDAO {
      * @param classificacao
      * @return 
      */
-    public List<Livro> consultarLivro(String titulo, String autor,
+    public List<Livro> consultarLivro(Integer id, String titulo, String autor,
             String isbn, String editora, String classificacao) {
         EntityManager em = getEntityManager();
 
@@ -97,6 +97,10 @@ public class LivroDAO {
             Root<Livro> root = query.from(Livro.class);
 
             List<Predicate> predicates = new ArrayList<>();
+            
+            if (id != null ){
+                predicates.add(criteriaBuilder.equal(root.get("id"), id));
+            }
 
             if (titulo != null && !titulo.trim().isEmpty()) {
                 predicates.add(criteriaBuilder.like(root.get("titulo"), "%"
@@ -123,8 +127,10 @@ public class LivroDAO {
                         "%" + classificacao + "%"));
             }
 
+            if(!predicates.isEmpty()){
             Predicate[] arrayPredicates = predicates.toArray(new Predicate[0]);
             query.where(arrayPredicates);
+            }
 
             return em.createQuery(query).getResultList();
 

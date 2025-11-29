@@ -4,12 +4,14 @@ import com.mycompany.library.dao.LivroDAO;
 import com.mycompany.library.model.entity.Livro;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
- * Tela que permite demonstrar o retorno da consulta de todos os livros existentes
- * no banco de dados, possuindo botões para chamar ações como Inserir, Editar e
- * Deletar
+ * Tela que permite demonstrar o retorno da consulta de todos os livros
+ * existentes no banco de dados, possuindo botões para chamar ações como
+ * Inserir, Editar e Deletar
+ *
  * @author Gabriel Expedito
  */
 public class ConsultaLivro extends javax.swing.JDialog {
@@ -25,6 +27,18 @@ public class ConsultaLivro extends javax.swing.JDialog {
         initComponents();
         configurarTabela();
         carregarTabelaLivros();
+        filtroCombo();
+
+    }
+
+    public void filtroCombo() {
+        cbFiltro.addItem("ID");
+        cbFiltro.addItem("Título");
+        cbFiltro.addItem("Autor");
+        cbFiltro.addItem("ISBN");
+        cbFiltro.addItem("Editora");
+        cbFiltro.addItem("Data Pub.");
+        cbFiltro.addItem("Classificação");
     }
 
     public void configurarTabela() {
@@ -43,6 +57,48 @@ public class ConsultaLivro extends javax.swing.JDialog {
         }
     }
 
+    public void buscarPorFiltro() {
+        String filtroSelecionado = cbFiltro.getSelectedItem().toString();
+        String filtroValor = txtFiltro.getText();
+
+        Integer id = null;
+        String titulo = null;
+        String autor = null;
+        String isbn = null;
+        String editora = null;
+        String classificacao = null;
+
+        switch (filtroSelecionado) {
+            case "ID":
+                if(!filtroValor.isEmpty())id = Integer.parseInt(filtroValor);
+                break;
+            case "Título":
+                if(!filtroValor.isEmpty())titulo = filtroValor;
+                break;
+            case "Autor":
+                if(!filtroValor.isEmpty()) autor = filtroValor;
+                break;
+            case "ISBN":
+                if(!filtroValor.isEmpty()) isbn = filtroValor;
+                break;
+            case "Editora":
+                if(!filtroValor.isEmpty()) editora = filtroValor;
+                break;
+            case "Classificação":
+                if(!filtroValor.isEmpty()) classificacao = filtroValor;
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Não foi "
+                        + "possível aplicar filtro");
+                return;
+        }
+        
+        List<Livro> livroFiltro = livroDAO.consultarLivro(id, titulo, autor, isbn, 
+                editora, classificacao);
+        
+        livroTableModel.setLivros(livroFiltro);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,6 +114,10 @@ public class ConsultaLivro extends javax.swing.JDialog {
         BtnCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblConsulta = new javax.swing.JTable();
+        BtnBuscar = new javax.swing.JButton();
+        cbFiltro = new javax.swing.JComboBox<>();
+        txtFiltro = new javax.swing.JTextField();
+        btnLimparFiltro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -102,6 +162,20 @@ public class ConsultaLivro extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tblConsulta);
 
+        BtnBuscar.setText("Buscar");
+        BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBuscarActionPerformed(evt);
+            }
+        });
+
+        btnLimparFiltro.setText("Limpar filtro");
+        btnLimparFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparFiltroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,14 +191,29 @@ public class ConsultaLivro extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnDeletar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnCancelar)))
+                        .addComponent(BtnCancelar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLimparFiltro)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnBuscar)
+                    .addComponent(btnLimparFiltro))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnInserir)
@@ -174,25 +263,33 @@ public class ConsultaLivro extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Erro ao excluir Livro"
                         + e.getMessage());
             }
-
         }
     }//GEN-LAST:event_BtnDeletarActionPerformed
 
     private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
         int linhaSelecionada = tblConsulta.getSelectedRow();
-        
+
         if (linhaSelecionada < 0) {
             JOptionPane.showMessageDialog(this, "Necessário selecionar um livro");
             return;
         }
-        
+
         Livro livro = livroTableModel.getLivro(linhaSelecionada);
-        
+
         EditarLivro editarLivro = new EditarLivro(this, true, livro);
         editarLivro.setVisible(true);
-        
+
         carregarTabelaLivros();
     }//GEN-LAST:event_BtnEditarActionPerformed
+
+    private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
+        buscarPorFiltro();
+    }//GEN-LAST:event_BtnBuscarActionPerformed
+
+    private void btnLimparFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparFiltroActionPerformed
+        txtFiltro.setText("");
+        carregarTabelaLivros();
+    }//GEN-LAST:event_btnLimparFiltroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,11 +335,15 @@ public class ConsultaLivro extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnBuscar;
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnDeletar;
     private javax.swing.JButton BtnEditar;
     private javax.swing.JButton BtnInserir;
+    private javax.swing.JButton btnLimparFiltro;
+    private javax.swing.JComboBox<String> cbFiltro;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblConsulta;
+    private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }

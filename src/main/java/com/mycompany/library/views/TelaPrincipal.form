@@ -31,7 +31,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="MenuItemConsultarLivros">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar livros"/>
+                <Property name="text" type="java.lang.String" value="Consultar todos livros"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemConsultarLivrosActionPerformed"/>
