@@ -17,7 +17,7 @@ Nesse arquivo será preciso informar a URL do JDBC, Usuário do banco e sua Senh
 
 **Baixar as dependências do Maven:**
 
-A aplicação possuí dependências externas configuradas dentro do arquivo pom.xml, antes de inicializar a aplicação garante que as dependências foram baixadas corretamente:
+A aplicação possuí dependências externas configuradas dentro do arquivo pom.xml, antes de inicializar a aplicação garanta que as dependências foram baixadas corretamente:
 
 Caso esteja usando a IDE Netbeans: basta rodar o comando Clean and Build
 
