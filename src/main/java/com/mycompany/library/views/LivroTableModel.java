@@ -14,7 +14,8 @@ import javax.swing.table.AbstractTableModel;
  */
 public class LivroTableModel extends AbstractTableModel {
 
-    private static final String[] COLUNAS = {"ID", "Título", "Autor", "ISBN", "Editora", "Data Pub.", "Classificação"};
+    private static final String[] COLUNAS = {"ID", "Título", "Autor", "ISBN", 
+        "Editora", "Data Pub.", "Classificação"};
 
     private List<Livro> livros;
 

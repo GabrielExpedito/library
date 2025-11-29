@@ -10,32 +10,33 @@ import jakarta.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.criteria.Predicate;
+import java.time.LocalDate;
 
 /**
- *Classe responsável por realizar as operações de persistência no banco da 
+ * Classe responsável por realizar as operações de persistência no banco da
  * Entidade Livro com JPA e Hibernate
- * 
- * <p>Este DAO possuí as ações relacionadas ao gerenciamento de livros no banco
- * de dados como salvar, consultar, editar e deletar</p>
- * 
+ *
+ * <p>
+ * Este DAO possuí as ações relacionadas ao gerenciamento de livros no banco de
+ * dados como salvar, consultar, editar e deletar</p>
+ *
  * @author Gabriel Expedito
  */
 public class LivroDAO {
-    
-    
+
     /**
      * Instância um EntityManager a partir do Hibernate.
-     * 
-     * @return  novo EntityManager para operações em JPA
+     *
+     * @return novo EntityManager para operações em JPA
      */
     private EntityManager getEntityManager() {
         return HibernateUtil.obterEntityManager();
     }
 
-    
     /**
      * Persiste um objeto Livro no banco de dados.
-     * @param livro 
+     *
+     * @param livro
      */
     public void salvarLivro(Livro livro) {
         EntityManager em = getEntityManager();
@@ -54,15 +55,15 @@ public class LivroDAO {
 
     /**
      * Consulta todos os livros salvos no banco de dados.
-     * 
-     * @return  lista contendo todos os livros encontrados
+     *
+     * @return lista contendo todos os livros encontrados
      */
     public List<Livro> consutarTodosLivros() {
         EntityManager em = getEntityManager();
 
         try {
-            return getEntityManager().createQuery("FROM " + 
-                    Livro.class.getName()).getResultList();
+            return getEntityManager().createQuery("FROM "
+                    + Livro.class.getName()).getResultList();
         } catch (Exception e) {
             System.err.println("Erro ao consultar todos os livros: " + e.getMessage());
             e.printStackTrace();
@@ -75,20 +76,23 @@ public class LivroDAO {
     }
 
     /**
-     * Consulta livros aplicando filtro de pesquisa dinâmico.
-     * 
-     * <p>É utilizado critérios JPA para montar a consulta apenas com os campos 
-     * que foram preenchidos pelo usuário.</p>
-     * 
+     * Consulta livros aplicando filtro de pesquisa dinâmica.
+     *
+     * <p>
+     * É utilizado critérios JPA para montar a consulta apenas com os campos que
+     * foram preenchidos pelo usuário.</p>
+     *
      * @param titulo
      * @param autor
      * @param isbn
      * @param editora
+     * @param dataPublicacao
      * @param classificacao
-     * @return 
+     * @return
      */
     public List<Livro> consultarLivro(Integer id, String titulo, String autor,
-            String isbn, String editora, String classificacao) {
+            String isbn, String editora, LocalDate dataPublicacao,
+            String classificacao) {
         EntityManager em = getEntityManager();
 
         try {
@@ -97,8 +101,8 @@ public class LivroDAO {
             Root<Livro> root = query.from(Livro.class);
 
             List<Predicate> predicates = new ArrayList<>();
-            
-            if (id != null ){
+
+            if (id != null) {
                 predicates.add(criteriaBuilder.equal(root.get("id"), id));
             }
 
@@ -122,14 +126,19 @@ public class LivroDAO {
                         + editora + "%"));
             }
 
+            if (dataPublicacao != null) {
+                predicates.add(criteriaBuilder.equal(root.get("dataPublicacao"), 
+                        dataPublicacao)); 
+            }
+
             if (classificacao != null && !classificacao.trim().isEmpty()) {
                 predicates.add(criteriaBuilder.like(root.get("classificacao"),
                         "%" + classificacao + "%"));
             }
 
-            if(!predicates.isEmpty()){
-            Predicate[] arrayPredicates = predicates.toArray(new Predicate[0]);
-            query.where(arrayPredicates);
+            if (!predicates.isEmpty()) {
+                Predicate[] arrayPredicates = predicates.toArray(new Predicate[0]);
+                query.where(arrayPredicates);
             }
 
             return em.createQuery(query).getResultList();
@@ -142,10 +151,11 @@ public class LivroDAO {
 
     /**
      * Exclui um livro do banco de dados com base no ID
-     * 
-     * <p>Este método utiliza uma query HQL para realizar uma remoção diretamente
+     *
+     * <p>
+     * Este método utiliza uma query HQL para realizar uma remoção diretamente
      * sem necessidade de carregar o objeto</p>
-     * 
+     *
      * @param id identificador do livro a ser removido
      */
     public void deletarLivro(int id) {
@@ -175,15 +185,15 @@ public class LivroDAO {
             }
         }
     }
-    
+
     /**
-     * Atualiza os dados de um livro existente no banco 
-     * 
+     * Atualiza os dados de um livro existente no banco
+     *
      * @param livro objeto contendo os novos valores a serem persistidos
      */
     public void editarLivro(Livro livro) {
         EntityManager em = getEntityManager();
-        
+
         try {
             em.getTransaction().begin();
             em.merge(livro);
@@ -192,13 +202,13 @@ public class LivroDAO {
             em.getTransaction().rollback();
             System.err.println("Erro ao editar o livro");
             e.printStackTrace();
-            
-        }finally {
-            if(em != null){
+
+        } finally {
+            if (em != null) {
                 em.close();
             }
         }
-        
+
     }
 
 }

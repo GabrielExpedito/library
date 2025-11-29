@@ -2,6 +2,8 @@ package com.mycompany.library.views;
 
 import com.mycompany.library.dao.LivroDAO;
 import com.mycompany.library.model.entity.Livro;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
@@ -66,23 +68,33 @@ public class ConsultaLivro extends javax.swing.JDialog {
         String autor = null;
         String isbn = null;
         String editora = null;
+        LocalDate dataPublicacao = null;
         String classificacao = null;
 
         switch (filtroSelecionado) {
             case "ID":
-                if(!filtroValor.isEmpty())id = Integer.parseInt(filtroValor);
+                id = Integer.parseInt(filtroValor);
                 break;
             case "Título":
-                if(!filtroValor.isEmpty())titulo = filtroValor;
+                titulo = filtroValor;
                 break;
             case "Autor":
-                if(!filtroValor.isEmpty()) autor = filtroValor;
+                autor = filtroValor;
                 break;
             case "ISBN":
-                if(!filtroValor.isEmpty()) isbn = filtroValor;
+                isbn = filtroValor;
                 break;
             case "Editora":
-                if(!filtroValor.isEmpty()) editora = filtroValor;
+                editora = filtroValor;
+                break;
+            case "Data Pub.":    
+                try {
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                dataPublicacao = LocalDate.parse(filtroValor, format);
+                } catch (Exception e) {
+                    JOptionPane.showConfirmDialog(this, "Formato de data inválido");
+                    return;
+                }
                 break;
             case "Classificação":
                 if(!filtroValor.isEmpty()) classificacao = filtroValor;
@@ -94,7 +106,7 @@ public class ConsultaLivro extends javax.swing.JDialog {
         }
         
         List<Livro> livroFiltro = livroDAO.consultarLivro(id, titulo, autor, isbn, 
-                editora, classificacao);
+                editora,dataPublicacao, classificacao);
         
         livroTableModel.setLivros(livroFiltro);
     }
