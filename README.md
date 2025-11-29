@@ -25,7 +25,7 @@ Caso queira rodar por comando utilize:
 
   - mvn clean install
 
-**Tabelas do Banco de dados: **
+**Tabelas do Banco de dados:**
 
 Importante possuir a tabela no seu banco de dados correta para que possa ter uma comunicação eficiente ente a aplicação e o banco de dados, abaixo está a estrutura da tabela necessária em código para ser rodado:
 
