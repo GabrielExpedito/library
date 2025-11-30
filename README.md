@@ -50,4 +50,12 @@ Se for utilizar um IDE ex: Netbeans
   - Clique em Run
 
 Se for utilizar via terminal:
-  - java -jar target/library-1.0-SNAPSHOT.jar  
+  - java -jar target/library-1.0-SNAPSHOT.jar
+
+**Método Importar Arquivo CSV:**
+
+Dentro das pastas do projeto existem dois arquivos com os respectivos nomes:
+  - livros
+  - livros.import
+
+Esses são arquivos utilizados como teste para popular o banco através do método de importar o arquivo, caso queira utilizar os mesmos durante o uso da aplicação basta baixá-los.
