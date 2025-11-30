@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * Classe da entidade Livro usando o mapeamento do Hibernate

@@ -88,7 +88,7 @@ public class LivroDAO {
      * @param editora
      * @param dataPublicacao
      * @param classificacao
-     * @return
+     * @return Um lista dos livros com base nos filtros
      */
     public List<Livro> consultarLivro(Integer id, String titulo, String autor,
             String isbn, String editora, LocalDate dataPublicacao,

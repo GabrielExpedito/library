@@ -4,8 +4,6 @@ import com.mycompany.library.controller.ConsumoAPI;
 import com.mycompany.library.dao.LivroDAO;
 import com.mycompany.library.model.entity.Livro;
 import org.json.JSONObject;
-import java.util.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

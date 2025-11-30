@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.library.util;
 
 import jakarta.persistence.EntityManager;
@@ -9,7 +5,8 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 /**
- *
+ * Classe que cria e gerencia o acesso do Hibernate através do SessionFactory
+ * 
  * @author Gabriel Expedito
  */
 public class HibernateUtil {

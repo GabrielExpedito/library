@@ -4,16 +4,18 @@ import com.mycompany.library.model.entity.Livro;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
+ * Método para carregas as informações da tabela conforme constante padrão 
+ * definida.
+ * 
  * @author Gabriel Expedito
  */
 public class LivroTableModel extends AbstractTableModel {
 
+    //Constante que define os campos da tabela 
     private static final String[] COLUNAS = {"ID", "Título", "Autor", "ISBN", 
         "Editora", "Data Pub.", "Classificação"};
 
@@ -27,6 +29,7 @@ public class LivroTableModel extends AbstractTableModel {
 
     public void setLivros(List<Livro> livros) {
         this.livros = livros;
+        //Atualiza a tabela ao ter alteração nos livros
         fireTableDataChanged();
     }
 
@@ -39,7 +42,7 @@ public class LivroTableModel extends AbstractTableModel {
         fireTableRowsDeleted(row, row);
     }
 
-    // --- Métodos de AbstractTableModel
+    // Métodos de AbstractTableModel (Contratos do extend AbstractTableModel)
     @Override
     public int getRowCount() {
         return livros.size();
@@ -64,6 +67,7 @@ public class LivroTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Livro livro = livros.get(rowIndex);
 
+        //Monta o indíce dos campos da tabela
         switch (columnIndex) {
             case 0: // ID
                 return livro.getId();
