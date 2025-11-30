@@ -1,13 +1,10 @@
 package com.mycompany.library.views;
 
-import java.util.Date;
 import com.mycompany.library.dao.LivroDAO;
 import com.mycompany.library.model.entity.Classificacao;
 import com.mycompany.library.model.entity.Livro;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -182,14 +179,19 @@ public class CadastroLivro extends javax.swing.JDialog {
             String editora = txtEditora.getText();
             Classificacao classificacao = (Classificacao) cbClassificacao.getSelectedItem();
 
-
-            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-            LocalDate dataConvertida = LocalDate.parse(dataString, format);
-
             livro.setTitulo(titulo);
             livro.setAutor(autor);
-            livro.setDataPublicacao(dataConvertida);
+
+            try {
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate dataConvertida = LocalDate.parse(dataString, format);
+                livro.setDataPublicacao(dataConvertida);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Formato de data inválido");
+                return;
+            }
+
             livro.setIsbn(isbn);
             livro.setEditora(editora);
             livro.setClassificacao(classificacao);

@@ -6,13 +6,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
  * Tela que permite demonstrar o retorno da consulta de todos os livros
  * existentes no banco de dados, possuindo botões para chamar ações como
- * Inserir, Editar e Deletar
+ * Inserir, Editar, Deletar e Campo para buscar livros com filtros.
  *
  * @author Gabriel Expedito
  */
@@ -33,6 +32,7 @@ public class ConsultaLivro extends javax.swing.JDialog {
 
     }
 
+    //Função para preencer os campos possíveis do ComboBox
     public void filtroCombo() {
         cbFiltro.addItem("ID");
         cbFiltro.addItem("Título");
@@ -43,11 +43,13 @@ public class ConsultaLivro extends javax.swing.JDialog {
         cbFiltro.addItem("Classificação");
     }
 
+    // Método para buscar o modelo padrão da tabela no LivroTableModel
     public void configurarTabela() {
         livroTableModel = new LivroTableModel(new ArrayList<>());
         tblConsulta.setModel(livroTableModel);
     }
 
+    //Método para carregar os dados dos livros salvos no banco na tabela
     public void carregarTabelaLivros() {
         try {
             List<Livro> resultado = livroDAO.consutarTodosLivros();
@@ -59,6 +61,7 @@ public class ConsultaLivro extends javax.swing.JDialog {
         }
     }
 
+    //Método identifica o filtro que o Usuário preencheu para atualizar Tabela
     public void buscarPorFiltro() {
         String filtroSelecionado = cbFiltro.getSelectedItem().toString();
         String filtroValor = txtFiltro.getText();
@@ -92,7 +95,7 @@ public class ConsultaLivro extends javax.swing.JDialog {
                 DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 dataPublicacao = LocalDate.parse(filtroValor, format);
                 } catch (Exception e) {
-                    JOptionPane.showConfirmDialog(this, "Formato de data inválido");
+                    JOptionPane.showMessageDialog(this, "Formato de data inválido");
                     return;
                 }
                 break;
@@ -253,6 +256,7 @@ public class ConsultaLivro extends javax.swing.JDialog {
     private void BtnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeletarActionPerformed
         int linhaSelecionado = tblConsulta.getSelectedRow();
 
+        //Validação para que usuário tenha um registro selecionado na tabela
         if (linhaSelecionado == -1) {
             JOptionPane.showMessageDialog(this, "Selecione um registro "
                     + "para excluir");
@@ -281,6 +285,7 @@ public class ConsultaLivro extends javax.swing.JDialog {
     private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
         int linhaSelecionada = tblConsulta.getSelectedRow();
 
+        //Validação para garantir que o usuário tenha um registro selecionado
         if (linhaSelecionada < 0) {
             JOptionPane.showMessageDialog(this, "Necessário selecionar um livro");
             return;

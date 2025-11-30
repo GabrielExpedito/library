@@ -1,14 +1,19 @@
 package com.mycompany.library.views;
 
 import com.mycompany.library.controller.ImportarArquivoController;
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
  * Tela para chamar o File Chooser para buscar no sistema o arquivo CSV
+ *
  * @author Gabriel Expedito
  */
 public class ImportacaoArquivo extends javax.swing.JDialog {
-    
+
     private ImportarArquivoController arquivoController;
 
     /**
@@ -89,7 +94,19 @@ public class ImportacaoArquivo extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void FileChooserImportarArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FileChooserImportarArquivoActionPerformed
-        arquivoController.abrirFileChooser();
+        if (evt.getActionCommand().equals(JFileChooser.APPROVE_SELECTION)) {
+            File arquivo = FileChooserImportarArquivo.getSelectedFile();
+            try {
+                arquivoController.importarCSV(arquivo);
+                JOptionPane.showMessageDialog(this, "Arquivo importado");
+            } catch (Exception ex) {
+                Logger.getLogger(ImportacaoArquivo.class.getName()).
+                        log(Level.SEVERE, null, ex);
+            }
+            this.dispose();
+        } else if (evt.getActionCommand().equals(JFileChooser.CANCEL_SELECTION)) {
+            this.dispose();
+        }
     }//GEN-LAST:event_FileChooserImportarArquivoActionPerformed
 
     /**
@@ -133,9 +150,7 @@ public class ImportacaoArquivo extends javax.swing.JDialog {
             }
         });
     }
-    
-    
-    
+
     public void mensagem(String mensagem) {
         JOptionPane.showMessageDialog(this, mensagem);
     }

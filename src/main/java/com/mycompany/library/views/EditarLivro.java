@@ -3,10 +3,8 @@ package com.mycompany.library.views;
 import com.mycompany.library.dao.LivroDAO;
 import com.mycompany.library.model.entity.Classificacao;
 import com.mycompany.library.model.entity.Livro;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -27,9 +25,15 @@ public class EditarLivro extends javax.swing.JDialog {
         initComponents();
         this.livro = livro;
 
-        preencherCampos();
     }
 
+    /**
+     * Construtor extra criado (sobrecarga) para poder passar o parâmetro do 
+     * Livro ao abrir a tela, assim sendo possível preencher os dados livro
+     * @param parent
+     * @param modal
+     * @param livro 
+     */
     public EditarLivro(java.awt.Window parent, boolean modal, Livro livro) {
         super(parent, DEFAULT_MODALITY_TYPE);
         initComponents();
@@ -41,6 +45,10 @@ public class EditarLivro extends javax.swing.JDialog {
 
     }
 
+    /**
+     * Método que preenche os campos ao abrir a tela editar com base no registro
+     * escolhido pelo usuário
+     */
     private void preencherCampos() {
         TxtTitulo.setText(livro.getTitulo());
         TxtAutor.setText(livro.getAutor());
