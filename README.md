@@ -11,7 +11,7 @@ Para rodar essa aplicação em Java é necessário ter a classe library.main, on
 
 Porém, antes é necessário configurar seu banco de dados dentro do arquivo que está no caminho: 
 
-  - library / target / classes / META-INF / persistence.xml
+  - library / src / main / resources / META-INF / persistence.xml
 
 Nesse arquivo será preciso informar a URL do JDBC, Usuário do banco e sua Senha caso tenha. Importante se atentar de que toda a configuração dessa aplicação foi pensada para ser usada com PostgreSQL.
 
